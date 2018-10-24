@@ -1,0 +1,52 @@
+@CHARSET "UTF-8";
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.loginheader{
+	margin:0 auto;
+	margin-top:75px;
+	text-align:35px;
+	width:60%;
+	height:50px;
+	background-color:#d6fa9e;
+}
+#logincontainer{
+	margin:0 auto;
+	width:60%;
+	height:300px;
+	background-color:#cdfeef;
+}
+#propertyspan{
+	font-size:22px;
+	margin-left:200px;
+	display:block;
+	
+}
+#loginradio{
+	font-size:15px;
+	margin-left:450px;
+	margin-top:10px;
+}
+label{
+	font-size:20px;
+	margin-right:50px;
+}
+#namespan{
+	font-size:20px;
+	margin-left:250px;
+	margin-top:25px;
+}
+#nickname{
+	margin-left:400px;
+	width:150px;
+	height:30px;
+}
+#loginbutton{
+	margin-left:350px;
+	margin-top:70px;
+	width:150px;
+	height:40px;
+	font-size:25px;
+	border-radius:5px;
+}

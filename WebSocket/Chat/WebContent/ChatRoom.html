@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href ="style.css" type="text/css" rel = "stylesheet">
+</head>
+<body>
+	<div class ="top">
+		<div class ="top_content">Welcome to Chat Room</div>
+	</div>
+	<div class ="container">
+		<div id ="container_left">群聊消息显示</div>
+		<div class ="container_right">
+			<h3>私聊模式</h3>
+			<input type="text" id="require_guest">
+			<input type="button" id="require_button" value="提交" onclick="requireper()">
+			<input type="button" id="jump_button" value="跳转按钮" onclick="jump()">
+		</div>
+	</div>
+	<div class ="footer">
+		<input type = "text" id="text_field">
+		<input type = "button" value="发送" id = "button" onclick = "sendmsg()">
+	</div>
+	
+	<script type="text/javascript">
+	 var socket = new WebSocket("ws://localhost:8080/Chat/websocket/chat");
+     //2. 注册一个事件
+     socket.onmessage = function(message)
+     {	 
+      	     document.getElementById("container_left").innerHTML = document.getElementById("container_left").innerHTML + "<br/>"+message.data;
+     }  
+     //3.定义发送消息的函数
+    function sendmsg(){
+    	 socket.send(document.getElementById("text_field").value);
+    	 document.getElementById("text_field").value = "";
+     }    
+     function requireper(){
+    	 socket.send(document.getElementById("require_guest").value);
+    	 document.getElementById("require_guest").value = "";
+     }
+    function jump(){
+    	window.location.href = "http://localhost:8080/Chat/SingleChatRoom.html";
+    }
+    document.onkeydown = function(e){
+    	   if(!e){
+    	    e = window.event;
+    	   }
+    	   if((e.keyCode || e.which) == 13){
+    	    sendmsg();
+    	   }
+    	  }
+	</script>
+</body>
+</html>

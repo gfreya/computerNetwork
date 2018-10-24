@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="loginstyle.css">
+</head>
+<body>
+	<div class="loginheader">Login</div>
+	<div id="logincontainer">
+		<div id="loginproperty">
+			<span id="propertyspan">Choose the property of you:</span>
+			<br/>
+			<form id="loginradio">
+			<label>
+				<input name="property" type="radio" value="Guest">Guest
+			</label>
+			<label>
+				<input name="property" type="radio" value="Staff">Staff
+			</label>
+			</form>
+			<br/>
+		</div>
+		<div id="loginname">
+		<span id="namespan">Nickname : </span>
+			<input type="text" id="nickname">
+		</div>
+		<input id="loginbutton" type="button" value="提交" onclick="submitname()">
+		
+		<div id="text"></div>
+	</div>
+	
+	<script type="text/javascript">
+	 //1. 连接到websocket服务器上
+    var socket = new WebSocket("ws://localhost:8080/TestService/websocket/chat");
+    //2. 注册一个事件
+    socket.onmessage = function(message)
+        {
+        	document.getElementById("text").innerHTML = document.getElementById("text").innerHTML + "<br/>"+message.data;
+        }
+		function submitname(){
+			var obj = document.getElementsByName("property");
+			var str = "101";
+            for (var i = 0; i < obj.length; i++) {
+                if (obj[i].checked == true) {
+                	if(obj[i].value == "Staff"){
+                		socket.send(str+obj[i].value+document.getElementById("nickname").value);  
+                   	  window.location.href = "http://localhost:8080/TestService/Staff.html";
+                	}
+                	if(obj[i].value == "Guest"){
+                   	   window.location.href = "http://localhost:8080/TestService/SingleChatRoom.html";
+                	}   
+                }
+                
+            }
+   		    document.getElementById("nickname").value = "";
+
+     } 
+	</script>
+</body>
+</html>

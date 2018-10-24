@@ -1,0 +1,40 @@
+@CHARSET "UTF-8";
+*{
+	margin:0px;
+	padding:0px;
+}
+.singleheader{
+	margin:0 auto;
+	text-align:center;
+	font-size: 35px;
+	width:80%;
+	height:50px;
+	background-color:#e2e29c;
+}
+#singlechat{
+	margin:0 auto;
+	width:80%;
+	height:500px;
+	background-color:#a5dad6;
+	border:2px solid black;
+}
+#singlefooter{
+	margin: 0 auto;
+	width:80%;
+	height:50px;
+	background-color:#f0c2fa;
+}
+#singletext{
+	margin-left:200px;
+	margin-top:5px;
+	width:400px;
+	height:30px;
+	float:left;
+}
+#singlebutton{
+	margin-left: 800px;
+	margin-top: -30px;
+	width:100px;
+	height:30px;
+	float:left;
+}

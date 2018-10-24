@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SingleChatRoom</title>
+<link rel="stylesheet" type="text/css" href="singlestyle.css">
+</head>
+<body>
+	<div class="singleheader">Welcome To Single Chat</div>
+	<div id="singlechat">
+	</div>
+	<div id="singlefooter">
+		<input type="text" id="singletext">
+		<input type = "button" id="singlebutton" value="发送" onclick="sendmsg()">
+	</div>
+    <script type="text/javascript">
+        var socket = new WebSocket("ws://localhost:8080/TestService/websocket/chat1");
+        socket.onmessage = function(message)
+        {
+        	document.getElementById("singlechat").innerHTML =
+        		document.getElementById("singlechat").innerHTML + "<br/>"+message.data;
+        }
+        
+         function sendmsg(){
+    	 socket.send(document.getElementById("singletext").value);
+    	 document.getElementById("singletext").value = "";
+        } 
+         document.onkeydown = function(e){
+      	   if(!e){
+      	    e = window.event;
+      	   }
+      	   if((e.keyCode || e.which) == 13){
+      	    sendmsg();
+      	   }
+      	  }
+    </script>
+   
+</body>
+
+
+
+</html>
